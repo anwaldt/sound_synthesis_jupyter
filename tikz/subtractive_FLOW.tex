@@ -1,0 +1,104 @@
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{background,main,foreground}
+
+\begin{tikzpicture}[node distance=4cm] 
+ 
+ 
+\node[m_sys] (vco) {VCO}; 
+
+\node[m_sys,below of=vco , node distance = 1.8cm] (noise) {NOISE}; 
+
+\node[m_sys,below of=noise, node distance = 1.8cm ] (whatever2) {...}; 
+
+\node[m_sys,above of=vco , node distance = 1.8cm] (whatever) {...}; 
+
+
+\node[m_sys,below right of=noise, xshift=2cm] (lfo) {LFO}; 
+
+\node[m_sys,right of=lfo, node distance=4cm] (env) {ENV}; 
+
+
+
+\node[circle,draw=black,right of=vco, node distance=3cm, minimum size=1cm] (adder1) {+}; 
+
+\node[m_sys,right of=adder1 ] (vcf) {VCF}; 
+\node[m_sys,right of=vcf ] (vca) {VCA}; 
+
+\node[right of=vca, node distance=2.5cm] (out) {OUT}; 
+
+
+ \begin{pgfonlayer}{background}
+\path (noise.west |- whatever.north)+(-0.5,0.5) node (a) {};
+\path (whatever2.south -| noise.east)+(+0.5,-0.5) node (b) {};
+\path (noise.east |- whatever2.south)+(+0.5,-0.4) node (c) {};
+\path[fill=black!10,rounded corners, draw=black!50]
+(a) rectangle (c);
+\path (whatever.north west)+(-0.5,0.5) node (a) {};
+
+\node (asrs) [above of = whatever,  xshift=-0cm, font=\sffamily]{\bfseries Generators};
+
+\end{pgfonlayer}
+
+
+
+
+
+
+ \begin{pgfonlayer}{background}
+\path (noise.west |- lfo.north)+(-0.5,0.5) node (a) {};
+\path (lfo.south -| env.east)+(+0.5,-0.5) node (b) {};
+\path (env.east |- env.south)+(+0.5,-0.5) node (c) {};
+\path[fill=black!10,rounded corners, draw=black!50, dashed, fill opacity=0.5]
+(a) rectangle (c);
+\path (lfo.north west)+(-0.5,0.5) node (a) {};
+
+\node (asrs) [above of = env,   xshift=-1.5cm, font=\sffamily]{\bfseries Modulators};
+\end{pgfonlayer}
+
+
+
+ \begin{pgfonlayer}{background}
+ %
+\path (vcf.west |- vcf.north)+(-0.5,0.5) node (a) {};
+%
+\path (vca.south -| vca.east)+(+0.5,-0.5) node (b) {};
+%
+\path (vca.east |- vca.south)+(+0.5,-0.5) node (c) {};
+%
+\path[fill=black!10,rounded corners, draw=black!50]
+(a) rectangle (c);
+\path (whatever.north west)+(-0.5,0.5) node (a) {};
+
+\node (asrs) [above of = vca, node distance = 1.2cm, xshift=-1.5cm, font=\sffamily]{\bfseries Manipulators};
+
+\end{pgfonlayer}
+
+
+
+
+ 
+\draw [audio](vco.east)  --  (adder1.180);
+\draw [audio](noise.east)  --  (adder1.200);
+\draw [audio](whatever.east)  --  (adder1.160);
+
+\draw [audio](adder1)  --  (vcf);
+\draw [audio](vcf)  --  (vca);
+\draw [audio](vca)  --  (out);
+
+
+\draw [cv](lfo)  |- ++ (0 ,-1.5) -| (-4 ,-1.5) |-  (vco);
+\draw [cv](lfo)  |- ++ (0 ,-1.5) -| (-4 ,-1.5) |-  (noise);
+\draw [cv](lfo)  |- ++ (0 ,-1.5) -| (-4 ,-1.5) |-  (whatever);
+
+\draw [cv](env)  |- ++ (0 ,-1.5) -| (-4 ,-1.5) |-  (vco);
+
+
+\draw [cv](lfo)  |- ++ (0 ,2) -|   (vcf);
+\draw [cv](lfo)  |- ++ (0 ,2) -|   (vca);
+
+
+\draw [cv](env)  |- ++ (0 ,2) -|   (vca);
+\draw [cv](env)  |- ++ (0 ,2) -|   (vcf);
+
+\end{tikzpicture}

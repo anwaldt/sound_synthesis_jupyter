@@ -1,0 +1,21 @@
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{background,main,foreground}
+
+\begin{tikzpicture}[node distance=4cm] 
+ 
+ 
+\node[m_sys] (x) {$x(t)$}; 
+
+ 
+\node[circle,draw=black,right of=x, node distance=5cm, minimum size=1cm] (adder1) {x}; 
+
+\node[m_sys,below of=adder1 , node distance = 2.5cm] (m) {$m(t)$}; 
+
+\node[right of=adder1 , node distance = 2.5cm] (y) {$y(t)$}; 
+
+\draw [audio](x)  --  (adder1);
+\draw [audio](m)  --  (adder1);
+\draw [audio](adder1)  --  (y);
+
+\end{tikzpicture}

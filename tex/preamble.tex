@@ -1,0 +1,27 @@
+\usepackage{pgf}
+\usetikzlibrary{arrows.meta, arrows, positioning, shadows, shapes, backgrounds}
+\usepackage{pgfkeys}
+
+\tikzset{
+ audio/.style={-triangle 45, draw, gray, line width=1pt},
+ multi/.style={-open triangle 45, draw, gray, line width=3.5pt},
+ cv/.style={-open triangle 45, draw},
+ osc/.style={open triangle 45-open triangle 45, draw, densely dashed},
+ }
+ 
+ 
+ 
+\tikzstyle{sub_sys}=[draw, fill=black!5,   text width=4em,
+text centered, minimum height=1.5em,drop shadow, rounded corners =0.015cm]
+%, rounded corners]
+ 
+\tikzstyle{m_sys}=[draw, fill=white,   text width=8em,
+text centered, minimum height=4em,drop shadow, thick, rounded corners =0.05cm] 
+
+\tikzstyle{op}=[draw, fill=white,   text width=2em,
+text centered, minimum height=2em,drop shadow, thick, rounded corners, rounded corners =0.05cm] 
+
+\tikzset{font=\scriptsize}
+
+
+\usetikzlibrary{external,circuits}
