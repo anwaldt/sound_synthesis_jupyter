@@ -1,1 +1,5 @@
 numpy
+matplotlib
+tikzplotlib
+IPython
+ipywidgets
