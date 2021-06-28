@@ -1,11 +1,9 @@
-This is the accompanying repository for the TU seminar:
-
-[Sound Synthesis: Building Instruments with Faust](https://www.ak.tu-berlin.de/menue/lehre/sommersemester_2020/sound_synthesis/)
-
 <img src="Images/spree_system.jpg" alt="SynLab" style="width: 100px;"/>
 
+These Jupyter Notebooks feature examples for some methods of digital sound synthesis.
+They are used as supplementary material for the following classes:
 
+- [Sound Synthesis Introduction](http://hvc.berlin/Physical_Modeling/physical-modeling-waveguides/)
+- [Building Instruments in Faust](http://hvc.berlin/teaching/building-instruments-in-faust/)
 
-- the _no-code-book_ directory is used for preparing the classes
-- no-code-books are converted to HTML through
-pandoc 
+The easiest way to use the notebooks is with [Binder](https://mybinder.org/).
